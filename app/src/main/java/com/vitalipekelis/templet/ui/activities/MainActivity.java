@@ -11,15 +11,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
+import com.android.volley.Response;
+import com.android.volley.error.VolleyError;
 import com.vitalipekelis.templet.interfaces.NavigationDrawerCallbacks;
 import com.vitalipekelis.templet.services.controllers.MainController;
 import com.vitalipekelis.templet.ui.fragments.NavigationDrawerFragment;
 import com.vitalipekelis.templet.R;
 import com.vitalipekelis.templet.utils.Constants.MyConstants;
 import com.vitalipekelis.templet.utils.FragmentSwapper;
+import com.vitalipekelis.templet.utils.MyLogger;
 
 public class MainActivity extends MyBaseActivity
         implements NavigationDrawerCallbacks {
+
+    private final static String TAG = MainActivity.class.getSimpleName();
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -36,17 +41,7 @@ public class MainActivity extends MyBaseActivity
 
 
     public void onSectionAttached(int number) {
-        switch (number) {
-            case 1:
-                mTitle = getString(R.string.title_section1);
-                break;
-            case 2:
-                mTitle = getString(R.string.title_section2);
-                break;
-            case 3:
-                mTitle = getString(R.string.title_section3);
-                break;
-        }
+
     }
 
 
@@ -107,13 +102,39 @@ public class MainActivity extends MyBaseActivity
             {
                 mMainController = getService().getController(MainController.class);
             }
-
+            getTest();
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
     }
+
+
+
+    private void getTest()
+    {
+        if (mMainController != null)
+        {
+
+            mMainController.performInternetConnectivityCheck(new Response.Listener<String>() {
+                @Override
+                public void onResponse(final String response)
+                {
+                    if (response != null)
+                    {
+                        MyLogger.print(TAG, response);
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            });
+        }
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */

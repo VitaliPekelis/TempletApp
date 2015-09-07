@@ -64,4 +64,12 @@ public class MyLogger {
 			Log.e(tag, postMsg);
 		}
 	}
+
+	public static void printlongInfo(String tag, String str) {
+		if(str.length() > 4000) {
+			print(tag, str.substring(0, 4000));
+			printlongInfo(str.substring(4000), tag);
+		} else
+			print(tag, str);
+	}
 }

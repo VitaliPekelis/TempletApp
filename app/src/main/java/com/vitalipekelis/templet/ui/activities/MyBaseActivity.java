@@ -93,6 +93,7 @@ public abstract class MyBaseActivity extends AppCompatActivity {
         mServiceConnection = new ServiceConnection()
         {
 
+
             @Override
             public void onServiceDisconnected(ComponentName name)
             {
