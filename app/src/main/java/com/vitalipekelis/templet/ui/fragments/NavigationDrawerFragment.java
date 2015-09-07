@@ -1,5 +1,7 @@
 package com.vitalipekelis.templet.ui.fragments;
 
+import android.graphics.drawable.ColorDrawable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
@@ -19,7 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.vitalipekelis.templet.R;
 import com.vitalipekelis.templet.interfaces.NavigationDrawerCallbacks;
@@ -57,8 +58,9 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mDrawerListView = (ListView) inflater.inflate(
-                R.layout.fragment_navigation_drawer, container, false);
+        View view = inflater.inflate(R.layout.fragment_navigation_drawer_n, container, false);
+
+        mDrawerListView = (ListView) view.findViewById(R.id.lv_side_menu);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -67,7 +69,7 @@ public class NavigationDrawerFragment extends Fragment {
         });
 
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
-        return mDrawerListView;
+        return view;
     }
 
     public boolean isDrawerOpen() {
@@ -86,13 +88,6 @@ public class NavigationDrawerFragment extends Fragment {
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
-
-        /*ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);*/
-
-        // ActionBarDrawerToggle ties together the the proper interactions
-        // between the navigation drawer and the action bar app icon.
         mDrawerToggle = new ActionBarDrawerToggle (
                 getActivity(),                    /* host Activity */
                 mDrawerLayout,                    /* DrawerLayout object */
@@ -106,8 +101,8 @@ public class NavigationDrawerFragment extends Fragment {
                 if (!isAdded()) {
                     return;
                 }
-                //TODO:
 
+                //TODO:
             }
 
             @Override
@@ -116,12 +111,14 @@ public class NavigationDrawerFragment extends Fragment {
                 if (!isAdded()) {
                     return;
                 }
+
                 //TODO:
             }
 
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
+
             }
         };
 
@@ -195,11 +192,32 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         if (item.getItemId() == R.id.action_example) {
-            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+            /*Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();*/
+            Snackbar
+                    .make(getView(), "Example action.", Snackbar.LENGTH_SHORT)
+                    .setAction("Actions", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            onSnackBarClick();
+                        }
+                    })
+                    .show(); // Don’t forget to show!
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void onSnackBarClick() {
+        Snackbar
+                .make(getView(), "Actions Click", Snackbar.LENGTH_SHORT)
+                .setAction("Actions", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onSnackBarClick();
+                    }
+                })
+                .show();
     }
 
 

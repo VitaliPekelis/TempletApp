@@ -1,28 +1,22 @@
 package com.vitalipekelis.templet.ui.activities;
 
-import android.app.Activity;
-import android.support.v4.app.Fragment;
-import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
 
 import com.android.volley.Response;
 import com.android.volley.error.VolleyError;
+import com.vitalipekelis.templet.R;
 import com.vitalipekelis.templet.interfaces.NavigationDrawerCallbacks;
 import com.vitalipekelis.templet.services.controllers.MainController;
+import com.vitalipekelis.templet.services.responses.QueryResult;
+import com.vitalipekelis.templet.services.utils.RequestStringBuilder;
 import com.vitalipekelis.templet.ui.fragments.NavigationDrawerFragment;
-import com.vitalipekelis.templet.R;
-import com.vitalipekelis.templet.utils.Constants.MyConstants;
+import com.vitalipekelis.templet.ui.fragments.PlaceholderFragment;
 import com.vitalipekelis.templet.utils.FragmentSwapper;
-import com.vitalipekelis.templet.utils.MyLogger;
 
-public class MainActivity extends MyBaseActivity
-        implements NavigationDrawerCallbacks {
+public class MainActivity extends MyBaseActivity implements NavigationDrawerCallbacks {
 
     private final static String TAG = MainActivity.class.getSimpleName();
 
@@ -31,18 +25,8 @@ public class MainActivity extends MyBaseActivity
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-    private CharSequence mTitle;
-
     protected MainController mMainController;
     private Toolbar mToolbar;
-
-
-
-
-
-    public void onSectionAttached(int number) {
-
-    }
 
 
     @Override
@@ -75,14 +59,25 @@ public class MainActivity extends MyBaseActivity
     @Override
     protected void initScreen() {
         setContentView(R.layout.activity_main);
-        init();
-
+        initToolbar();
+        initFragmentSwapper();
+        swappFragment();
     }
 
-    private void init() {
+    private void initFragmentSwapper() {
+        if(mFragmentSwapper == null)
+            mFragmentSwapper = new FragmentSwapper(getSupportFragmentManager());
+    }
+
+    private void swappFragment() {
+        mFragmentSwapper.swapToFragment(PlaceholderFragment.class, null, R.id.container, false);
+    }
+
+    private void initToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mToolbar.setTitle("");
+        /*mToolbar.setTitle("");*/
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -111,48 +106,31 @@ public class MainActivity extends MyBaseActivity
     }
 
 
+    private void getTest() {
+        if (mMainController != null) {
+            mMainController.getRates(
+                    RequestStringBuilder.getYahooFinanceXchange(),
+                    new Response.Listener<QueryResult>() {
+                        @Override
+                        public void onResponse(QueryResult response) {
+                            if (response != null) {
+                                doOnResponceArived(response);
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
 
-    private void getTest()
-    {
-        if (mMainController != null)
-        {
-
-            mMainController.performInternetConnectivityCheck(new Response.Listener<String>() {
-                @Override
-                public void onResponse(final String response)
-                {
-                    if (response != null)
-                    {
-                        MyLogger.print(TAG, response);
-                    }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    error.printStackTrace();
-                }
-            });
+                        }
+                    });
         }
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(
-                    getArguments().getInt(MyConstants.EXTRAS_KEY_ARG_SECTION_NUMBER));
+    private void doOnResponceArived(QueryResult query) {
+        PlaceholderFragment fragment = (PlaceholderFragment) mFragmentSwapper.findFragmentByTag(PlaceholderFragment.class.getSimpleName());
+        if(fragment != null){
+            fragment.setText(query);
         }
     }
 
@@ -162,14 +140,7 @@ public class MainActivity extends MyBaseActivity
     //-----------------------------------------------------------
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-
-        if(mFragmentSwapper == null)
-            mFragmentSwapper = new FragmentSwapper(getSupportFragmentManager());
-        // update the main content by replacing fragments
-        Bundle arguments = new Bundle();
-        arguments.putInt(MyConstants.EXTRAS_KEY_ARG_SECTION_NUMBER, position + 1);
-        mFragmentSwapper.swapToFragment(PlaceholderFragment.class, arguments, R.id.container, false);
-
+        //TODO:
     }
 
 

@@ -2,25 +2,11 @@
 <items version="2" >
 
     <item
-        jar="D:\AndroidStudioProjects\TempletApplication\app\libs\jackson-annotations-2.6.0.jar"
+        jar="D:\AndroidStudioProjects\TempletApplication\app\build\intermediates\exploded-aar\com.android.support\design\23.0.1\jars\classes.jar"
         jumboMode="false"
         revision="23.0.0"
-        sha1="a0990e2e812ac6639b6ce955c91b13228500476e">
-        <dex dex="D:\AndroidStudioProjects\TempletApplication\app\build\intermediates\pre-dexed\debug\jackson-annotations-2.6.0-3c41ba1d416f362c0a154ca738c2203c8db1c0ab.jar" />
-    </item>
-    <item
-        jar="D:\AndroidStudioProjects\TempletApplication\app\libs\jackson-core-2.5.0.jar"
-        jumboMode="false"
-        revision="23.0.0"
-        sha1="b2ece1bd57ac7b4c315b7505b65ac79cb1da4270">
-        <dex dex="D:\AndroidStudioProjects\TempletApplication\app\build\intermediates\pre-dexed\debug\jackson-core-2.5.0-e4ec644a256204e7b11023425eec4e5631a251b3.jar" />
-    </item>
-    <item
-        jar="D:\AndroidStudioProjects\TempletApplication\app\libs\jackson-databind-2.6.0.jar"
-        jumboMode="false"
-        revision="23.0.0"
-        sha1="d2e494b027c26edc4d4e7e9251e168e6af26d2d3">
-        <dex dex="D:\AndroidStudioProjects\TempletApplication\app\build\intermediates\pre-dexed\debug\jackson-databind-2.6.0-9725e267645d320bd1cd16443e63fcec8bda0089.jar" />
+        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
+        <dex dex="D:\AndroidStudioProjects\TempletApplication\app\build\intermediates\pre-dexed\debug\classes-bc715b17544c52f779f7d458c3e6445b082d1750.jar" />
     </item>
 
 </items>

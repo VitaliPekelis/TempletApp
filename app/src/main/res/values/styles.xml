@@ -2,13 +2,14 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
         <item name="colorPrimary">@color/grey</item>
         <item name="colorPrimaryDark">@color/blue</item>
         <item name="colorAccent">@color/blue_light</item>
         <item name="android:textColorPrimary">@color/black</item>
         <item name="android:windowBackground">@color/windowBackground</item>
     </style>
+
 
 </resources>
