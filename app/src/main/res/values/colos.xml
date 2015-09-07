@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="black_alfa_80">#CC000000</color>
+    <color name="red">#FF0000</color>
+    <color name="grey">#ff888888</color>
+    <color name="white_90tr">#E6ffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="green">#006600</color>
+    <color name="blue">#0000CC</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="purple">#6600CC</color>
+    <color name="blue_light">#3399FF</color>
+    <color name="orange">#FF6600</color>
+    <color name="pink_light">#FF99FF</color>
+    <color name="green_light">#99FF99</color>
+    <color name="background">#cccccccc</color>
+
+    <color name="colorPrimary">#F50057</color>
+    <color name="colorPrimaryDark">#C51162</color>
+    <color name="textColorPrimary">@color/white</color>
+    <color name="windowBackground">@color/white</color>
+    <color name="navigationBarColor">@color/black</color>
+    <color name="colorAccent">#FF80AB</color>
+
+
+</resources>

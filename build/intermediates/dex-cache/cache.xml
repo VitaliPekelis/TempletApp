@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\vitali.pekelis\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.2.4\a60a5e993c98c864010053cb901b7eab25306568\gson-2.2.4.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="D:\AndroidStudioProjects\TempletApplication\app\build\intermediates\pre-dexed\debug\gson-2.2.4-2df18f939d0af37d07b83687c5cc0487a67e4cb0.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\TempletApplication\app\build\intermediates\exploded-aar\TempletApplication\VolleyPlus\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="53afb64a73c30d58beed92260c3053a91057b625">
+        <dex dex="D:\AndroidStudioProjects\TempletApplication\app\build\intermediates\pre-dexed\debug\classes-24bd017a741ce9f19671b23c1741bee1fbb12839.jar" />
+    </item>
+
+</items>
