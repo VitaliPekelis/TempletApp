@@ -1,6 +1,5 @@
 package com.vitalipekelis.templet.ui.fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
@@ -43,12 +42,10 @@ public class MyBaseFragment extends Fragment implements
 
 
     protected boolean isAtachedToAcivity(){
-        Activity activity = getActivity();
-        if(activity != null){
+        if(getActivity() != null){
             return true;
         }else{
             return false;
         }
-
     }
 }

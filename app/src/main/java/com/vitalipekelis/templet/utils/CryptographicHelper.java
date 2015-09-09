@@ -29,23 +29,24 @@ public class CryptographicHelper {
     private void initEncrDecr() {
         try {
             // generate secret key using DES algorithm
-            mKey = KeyGenerator.getInstance("DES").generateKey();
+            mKey = KeyGenerator.getInstance("AES").generateKey();
 
-            mEcipher = Cipher.getInstance("DES");
-            mDcipher = Cipher.getInstance("DES");
+            mEcipher = Cipher.getInstance("AES");
+            mDcipher = Cipher.getInstance("AES");
 
             // initialize the ciphers with the given key
             mEcipher.init(Cipher.ENCRYPT_MODE, mKey);
+            mDcipher.init(Cipher.DECRYPT_MODE, mKey);
 
         } catch (GeneralSecurityException e ) {
             e.printStackTrace();
         }
     }
 
-    public String decript(String encripted) {
+    public String decript(String str) {
         // decode with base64 to get bytes
-        byte[] dec = Base64.decode(encripted.getBytes(), Base64.DEFAULT);
-        byte[] utf8 = new byte[0];
+        byte[] dec = Base64.decode(str.getBytes(), Base64.NO_WRAP);
+        byte[] utf8 = null;
         try {
 
             utf8 = mDcipher.doFinal(dec);
@@ -64,14 +65,14 @@ public class CryptographicHelper {
         return null;
     }
 
-    public String encrypt(String decrypted){
+    public String encrypt(String str){
         byte[] enc = new byte[0];//init
         try {
-            byte[] utf8 = decrypted.getBytes("UTF8");
+            byte[] utf8 = str.getBytes("UTF8");
             enc = mEcipher.doFinal(utf8);
 
             // encode to base64
-            enc = Base64.encode(enc,Base64.DEFAULT);
+            enc = Base64.encode(enc,Base64.NO_WRAP);
 
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
