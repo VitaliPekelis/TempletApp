@@ -31,6 +31,7 @@ public class PlaceholderFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         initUI(rootView);
 
+        
         encryptDecrypt();
         return rootView;
     }
