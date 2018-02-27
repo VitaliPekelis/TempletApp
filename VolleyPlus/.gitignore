@@ -71,11 +71,14 @@ proguard/
 .idea/
 .gradle
 gradle/
-/build
+build/
+/*/local.properties
+/*/out
+/*/*/build
+/*/*/production
 *.iml
 *.iws
 *.ipr
 *~
 *.swp
-app/build/
 
