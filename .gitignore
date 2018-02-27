@@ -86,3 +86,4 @@ SlidingMenu-Library/.gitignore
 build/intermediates/gradle_project_sync_data.bin
 app/build/
 VolleyPlus/build/
+build/
